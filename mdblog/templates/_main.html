@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %} {% endblock %} </title>
+    {% include "_head.html" %}
+    {% block head %}
+
+    {% endblock %}
+</head>
+
+{% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        <ul class="flashes">
+        {% for category, message in messages %}
+            <li class="{{category}}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+{% include "_nav.html" %}
+
+{% block header %}{% endblock %}
+
+<main>
+    {% block main %}{% endblock %}
+</main>
+
+{% include "_footer.html" %}
+
+</body>
+</html>
