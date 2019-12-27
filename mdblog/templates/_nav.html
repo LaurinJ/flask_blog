@@ -57,23 +57,23 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
                 <li class="active">
-                  <a href="index.html" class="nav-link text-left">Home</a>
+                  <a href="{{ url_for('index') }}" class="nav-link text-left">Home</a>
                 </li>
                 <li>
-                  <a href="categories.html" class="nav-link text-left">Categories</a>
+                  <a href="{{ url_for('view_category', category='New') }}" class="nav-link text-left">New</a>
                 </li>
                 <li>
-                  <a href="categories.html" class="nav-link text-left">Politics</a>
+                  <a href="{{ url_for('view_category', category='Politics') }}" class="nav-link text-left">Politics</a>
                 </li>
                 <li>
-                  <a href="categories.html" class="nav-link text-left">Business</a>
+                  <a href="{{ url_for('view_category', category='Business') }}" class="nav-link text-left">Business</a>
                 </li>
                 <li>
-                    <a href="categories.html" class="nav-link text-left">Health</a>
+                    <a href="{{ url_for('view_category', category='Health') }}" class="nav-link text-left">Health</a>
                 </li>
-                <li><a href="categories.html" class="nav-link text-left">Design</a></li>
+                <li><a href="{{ url_for('view_category', category='Desing') }}" class="nav-link text-left">Desing</a></li>
                 <li>
-                  <a href="categories.html" class="nav-link text-left">Sport</a>
+                  <a href="{{ url_for('view_category', category='Sport') }}" class="nav-link text-left">Sport</a>
                 </li>
                 <li><a href="contact.html" class="nav-link text-left">Contact</a></li>
               </ul>
