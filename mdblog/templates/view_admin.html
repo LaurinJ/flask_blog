@@ -1,6 +1,6 @@
 {% extends "_main.html" %}
 
-{% block title %}{{ title }} articles{% endblock %}
+{% block title %}{{ title }} Admin panel{% endblock %}
 
 {% block main %}
 <div class="site-wrap">
@@ -9,12 +9,7 @@
         <div class="row">
           <div class="col-lg-9">
             <div class="section-title">
-              {% if title == 'New' %}
-                <h2>{{ title }} articles</h2>
-              {% else %}
-                <span class="caption d-block small">Categories</span>
-                <h2>{{ title }}</h2>
-              {% endif %}
+              <h2>My articles</h2>
             </div>
             {% if articles %}
                 {% for article in articles %}
@@ -24,7 +19,7 @@
                               <h2><a href="{{ url_for('view_article', art_id=article.id) }}">{{ article.title }}</a></h2>
                               <p class="mb-3">{{ article.content | truncate(150) }}.</p>
                               <div class="post-meta">
-                                  <span class="d-block"><a href="#">{{ article.author.username }}</a> in <a href="#">News</a></span>
+                                  <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">News</a></span>
                                   <span class="date-read">{{ article.created_at }} <span class="mx-1">&bullet;</span> {{ article.reading_time }} min read <span
                                           class="icon-star2"></span></span>
                               </div>
@@ -38,28 +33,17 @@
 
             <div class="col-lg-3">
                 <div class="section-title">
-                    <h2>Popular Posts</h2>
+                    <h2>Admin setings</h2>
                 </div>
-                {% if trends %}
-                    {% for article in trends %}
                         <div class="trend-entry d-flex">
-                            <div class="number align-self-start">0{{ loop.index }}</div>
                             <div class="trend-contents">
-                                <h2><a href="{{ url_for('view_article', art_id=article.id) }}">{{ article.title }}</a></h2>
-                                <div class="post-meta">
-                                    <span class="d-block"><a href="#">{{ article.author.username }}</a> in <a href="#">News</a></span>
-                                    <span class="date-read">{{ article.created_at }} <span class="mx-1">&bullet;</span> {{ article.reading_time }} min read <span
-                                            class="icon-star2"></span></span>
-                                </div>
+                                <h2><a href="#">Add article</a></h2>
+                                <h2><a href="{{ url_for('change_password') }}">Change password</a></h2>
+                                <h2><a href="{{ url_for('change_image') }}">Change profile image</a></h2>
+                                <h2><a href="#"></a></h2>
+                                <h2><a href="#"></a></h2>
                             </div>
                         </div>
-                    {% endfor %}
-                {% else %}
-                    ...No article...
-                {% endif %}
-                <p>
-                    <a href="#" class="more">See All Popular <span class="icon-keyboard_arrow_right"></span></a>
-                </p>
             </div>
         </div>
         <div class="row">
@@ -68,7 +52,7 @@
               {% for page in paginate.iter_pages() %}
                   {% if page %}
                       {% if page != paginate.page %}
-                          <li><a href="{{ url_for('view_category', category=title, page=page) }}">{{ page }}</a></li>
+                          <li><a href="{{ url_for('view_admin', page=page) }}">{{ page }}</a></li>
                       {% else %}
                           <li class="active">{{ page }}</li>
                       {% endif %}
@@ -81,4 +65,4 @@
         </div>
       </div>
     </div>
-{% endblock %}
+{% endblock %}tml>

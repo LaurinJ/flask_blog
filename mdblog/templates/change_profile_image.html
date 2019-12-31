@@ -1,0 +1,30 @@
+{% extends "_main.html" %}
+{% block main %}
+<div class="site-section">
+    <div class="container">
+        <div class="align-items-center justify-content-center">
+            <form class="form" method="POST" action="#" enctype="multipart/form-data">
+                <div class="media">
+                    <img class="rounded-circle account-img"
+                         src="{{ url_for('static', filename='uploads/profiles/') }}{{current_user.image}}">
+                    <div class="media-body">
+
+                        <h2 class="account-heading">{{ current_user.username }}</h2>
+                        <p class="text-secondary">{{ current_user.email }}</p>
+                    </div>
+                </div>
+                {{ form.csrf_token }}
+                    <legend class="border-bottom mb-4">Account Info</legend>
+                        {{ form.image.label() }}
+                        {{ form.image }}
+                        {% if form.image.errors %}
+                        {% for error in form.image.errors %}
+                        <span class="text-danger">{{ error }}</span></br>
+                        {% endfor %}
+                        {% endif %}
+                    {{ form.submit }}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock main %}

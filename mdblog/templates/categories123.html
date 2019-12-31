@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+erory
+<div class="text-center">
+    {% for field, errors in form.errors.items() %}
+        {% for error in errors %}
+            <span style="color: red;">Chyba pole - {{ field }} hláška - {{ error }}</span><br>
+        {% endfor %}
+    {% endfor %}
+    <hr>
+</div>
+
+
+
+
 <head>
   <title>Meranda &mdash; Website Template by Colorlib</title>
   <meta charset="utf-8">
