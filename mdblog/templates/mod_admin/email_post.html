@@ -1,0 +1,70 @@
+{% extends "_main.html" %}
+{% block head %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{% endblock %}
+{% block main %}
+<div class="site-section">
+    <div class="container">
+        <h3>Email count: {{ count }}</h3>
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Email</th>
+                <th scope="col">Date</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if posts %}
+            {% for post in posts %}
+                {% if post.status %}
+                    <tr class="text-black">
+                        <th scope="row">{{ loop.index }}</th>
+                        <td>{{ post.first_name }}</td>
+                        <td>{{ post.last_name }}</td>
+                        <td>{{ post.email }}</td>
+                        <td>{{ post.sending_time }}</td>
+                        <td><a href="#">Read</a><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <th scope="row">{{ loop.index }}</th>
+                        <td>{{ post.first_name }}</td>
+                        <td>{{ post.last_name }}</td>
+                        <td>{{ post.email }}</td>
+                        <td>{{ post.sending_time }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            {% else %}
+            <tr>
+                <th scope="row">0</th>
+                <td>...No posts...</td>
+                <td>...No posts...</td>
+                <td>...No posts...</td>
+                <td>...No posts...</td>
+            </tr>
+            {% endif %}
+            </tbody>
+        </table>
+        <ul class="custom-pagination list-unstyled text-center">
+            {% for page in paginate.iter_pages() %}
+                {% if page %}
+                    {% if page != paginate.page %}
+                        <li><a href="{{ url_for('admin.view_email_posts', page=page) }}">{{ page }}</a></li>
+                    {% else %}
+                        <li class="active">{{ page }}</li>
+                    {% endif %}
+                {% else %}
+                    ...
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock main %}

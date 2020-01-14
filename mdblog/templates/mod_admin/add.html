@@ -1,22 +1,23 @@
 {% extends "_main.html" %}
 
-{% block title %} Register {% endblock %}
+{% block title %} New article {% endblock %}
 
 {% block main %}
 <div class="site-wrap">
     <div class="site-section">
       <div class="container">
         <div class="align-items-center justify-content-center">
-            <div class="login-page">
-              <div class="form">
-                <form action="{{ url_for('register') }}" method="post" class="register-form">
+            <div class="add-page">
+              <div class="{{ url_for('admin.add') }}">
+                <form action="#" method="post" class="register-form add-form" enctype="multipart/form-data">
                     {{ form.csrf_token }}
-                    {{ form.username }}
-                    {{ form.password }}
-                    {{ form.confirm_password }}
-                    {{ form.email }}
+                    {{ form.title }}
+                    {{ form.content }}
+                    {{ form.reading_time }}
+                    {{ form.category.label }}
+                    {{ form.category }}
+                    {{ form.image }}
                     {{ form.submit }}
-                  <p class="message">Already registered? <a href="{{ url_for('login') }}">Sign In</a></p>
                 </form>
               </div>
             </div>
@@ -30,7 +31,6 @@
                 <hr>
             </div>
         </div>
-
       </div>
     </div>
 {% endblock %}

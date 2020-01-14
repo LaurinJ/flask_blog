@@ -1,0 +1,44 @@
+{% extends "_main.html" %}
+
+{% block title %} Login {% endblock %}
+
+{% block main %}
+<div class="site-wrap">
+    <div class="site-section">
+      <div class="container">
+        <div class="align-items-center justify-content-center">
+            <div class="login-page">
+              <div class="form">
+                <form action="{{ url_for('admin.login', next=request.args.get('next')) }}" method="post" class="login-form">
+                    {{ form.csrf_token }}
+                    {% if form.username.errors %}
+                        {{ form.username(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.username.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.username }}
+                    {% endif %}
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password }}
+                    {% endif %}
+                    {{ form.submit }}
+                  <p class="message">Not registered? <a href="{{ url_for('admin.register') }}">Create an account</a></p>
+                </form>
+              </div>
+            </div>
+
+        </div>
+
+      </div>
+    </div>
+{% endblock %}

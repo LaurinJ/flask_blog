@@ -1,5 +1,10 @@
-from mdblog.app import flask_app, db
+# from mdblog.factory import create_flask_app
+from mdblog.factory import create_flask_app
+from mdblog.models import db
 import sys
+
+flask_app = create_flask_app()
+
 
 def start():
     host = "0.0.0.0"

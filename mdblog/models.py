@@ -1,8 +1,14 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql.functions import current_timestamp
 from werkzeug.security import check_password_hash, generate_password_hash
+from mdblog import login_manager
+from flask_login import UserMixin
 
 db = SQLAlchemy()
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -26,8 +32,9 @@ class Message(db.Model):
     tel_number = db.Column(db.Integer, nullable=False)
     message = db.Column(db.String, nullable=False)
     sending_time = db.Column(db.Integer, default=current_timestamp())
+    status = db.Column(db.BOOLEAN, default=True)
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     user_rel = db.relationship("Article", backref='author')
     username = db.Column(db.String, unique=True)

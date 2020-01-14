@@ -21,7 +21,7 @@
                       <img src="{{ url_for('static', filename='uploads/profiles/') }}{{ article.author.image }}" alt="Image" class="img-fluidid">
                   </div>
                   <div class="vcard">
-                      <span class="d-block"><a href="#">{{ article.author.username }}</a> in <a href="#">News</a></span>
+                      <span class="d-block"><a href="{{ url_for('blog.view_author', author=article.author.username) }}">{{ article.author.username }}</a> in <a href="{{ url_for('blog.view_category', category=article.category) }}">{{ article.category }}</a></span>
                       <span class="date-read">{{ article.created_at }} <span class="mx-1">&bullet;</span> {{ article.reading_time }} min read <span
                               class="icon-star2"></span></span>
                   </div>
@@ -30,7 +30,7 @@
               {{ article.content | safe }}
 
             <div class="pt-5">
-              <p>Categories: <a href="{{ url_for('view_category', category=article.category) }}">{{ article.category }} </a> Tags: <a href="#">#html</a>, <a
+              <p>Categories: <a href="{{ url_for('blog.view_category', category=article.category) }}">{{ article.category }} </a> Tags: <a href="#">#html</a>, <a
                       href="#">#trends</a></p>
             </div>
 
@@ -52,9 +52,9 @@
                     <div class="trend-entry d-flex">
                       <div class="number align-self-start">0{{ loop.index }}</div>
                       <div class="trend-contents">
-                        <h2><a href="{{ url_for('view_article', art_id=article.id) }}">{{ article.title }}</a></h2>
+                        <h2><a href="{{ url_for('blog.view_article', art_id=article.id) }}">{{ article.title }}</a></h2>
                         <div class="post-meta">
-                          <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">News</a></span>
+                          <span class="d-block"><a href="{{ url_for('blog.view_author', author=article.author.username) }}">Dave Rogers</a> in <a href="#">News</a></span>
                           <span class="date-read">{{ article.created_at }} <span class="mx-1">&bullet;</span> {{ article.reading_time }} min read <span
                                   class="icon-star2"></span></span>
                         </div>
